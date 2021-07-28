@@ -13,8 +13,8 @@ public class InmemUser {
 
 	@EqualsAndHashCode.Include
 	private final String username;
-	
+
 	@ToString.Exclude
 	private final String password;
-	
+
 }

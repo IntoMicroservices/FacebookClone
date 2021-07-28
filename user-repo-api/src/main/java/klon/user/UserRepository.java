@@ -2,12 +2,12 @@ package klon.user;
 
 import java.util.Optional;
 
-import io.vavr.control.Either;
-
 public interface UserRepository {
 
-	Either<String, User> addUser(User user);
+	void addUser(User user) throws UserExistsException;
+
 	Optional<User> getUser(String username);
+
 	boolean exists(String username);
-	
+
 }
