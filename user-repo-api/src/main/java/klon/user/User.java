@@ -6,11 +6,8 @@ import lombok.ToString;
 
 @Builder
 @Getter
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
 public class User {
-	private final String username;
-
-	@ToString.Exclude
-	private final String password;
-
+	@ToString.Include
+	private final String userId;
 }

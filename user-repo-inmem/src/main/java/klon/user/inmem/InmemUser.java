@@ -8,13 +8,11 @@ import lombok.ToString;
 @Builder
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
 public class InmemUser {
 
-	@EqualsAndHashCode.Include
-	private final String username;
-
-	@ToString.Exclude
-	private final String password;
+    @EqualsAndHashCode.Include
+    @ToString.Include
+    private final String userId;
 
 }
