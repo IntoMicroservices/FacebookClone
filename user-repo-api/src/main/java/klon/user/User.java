@@ -8,6 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString(onlyExplicitlyIncluded = true)
 public class User {
+	
 	@ToString.Include
 	private final String userId;
 }
