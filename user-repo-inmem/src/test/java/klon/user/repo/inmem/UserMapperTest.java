@@ -1,6 +1,6 @@
-package klon.user.inmem;
+package klon.user.repo.inmem;
 
-import klon.user.User;
+import klon.user.repo.api.User;
 import org.junit.jupiter.api.Test;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;

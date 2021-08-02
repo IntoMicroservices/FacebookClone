@@ -1,8 +1,8 @@
-package klon.user.inmem;
+package klon.user.repo.inmem;
 
-import klon.user.User;
-import klon.user.UserExistsException;
-import klon.user.UserRepository;
+import klon.user.repo.api.User;
+import klon.user.repo.api.UserExistsException;
+import klon.user.repo.api.UserRepository;
 import lombok.Builder;
 
 import java.util.Objects;
