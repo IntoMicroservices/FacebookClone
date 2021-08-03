@@ -21,6 +21,8 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <maven.compiler.release>11</maven.compiler.release>
         <vavr.version>0.10.4</vavr.version>
+        <sonar.organization>intomicroservices</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
     </properties>
 
