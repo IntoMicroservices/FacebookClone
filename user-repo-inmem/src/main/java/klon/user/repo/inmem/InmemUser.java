@@ -1,4 +1,4 @@
-package klon.user.inmem;
+package klon.user.repo.inmem;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package klon.user;
+package klon.user.repo.api;
 
 import java.util.Optional;
 

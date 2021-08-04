@@ -1,4 +1,4 @@
-package klon.user;
+package klon.user.repo.api;
 
 public class UserExistsException extends Exception {
 

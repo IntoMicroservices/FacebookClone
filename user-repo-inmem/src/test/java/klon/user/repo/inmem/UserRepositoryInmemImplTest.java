@@ -1,7 +1,7 @@
-package klon.user.inmem;
+package klon.user.repo.inmem;
 
-import klon.user.User;
-import klon.user.UserExistsException;
+import klon.user.repo.api.User;
+import klon.user.repo.api.UserExistsException;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
