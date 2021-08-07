@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <!--
-        Check what's inside org.springframework.boot:spring-boot-dependencies pom file and copy needed configurations here.
+        Check what's inside org.springframework.boot:pring-boot-starter-parent pom file and copy needed configurations here.
     -->
 
     <artifactId>spring-boot-parent</artifactId>
