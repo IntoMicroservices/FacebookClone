@@ -12,6 +12,11 @@
 
     <artifactId>dummy-spring-boot-app</artifactId>
 
+    <properties>
+        <sonar.coverage.exclusions>**/*</sonar.coverage.exclusions>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>klon</groupId>
