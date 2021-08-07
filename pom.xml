@@ -12,6 +12,10 @@
         <module>user-repo-inmem</module>
         <module>user-service-api</module>
         <module>user-service-impl</module>
+        <module>user-service-spring-boot-starter</module>
+        <module>spring-boot-parent</module>
+        <module>dummy-spring-boot-app</module>
+        <module>user-service-rest-spring-dummy</module>
     </modules>
 
     <properties>
@@ -25,9 +29,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.release>11</maven.compiler.release>
         <mockito.version>3.11.2</mockito.version>
-        <vavr.version>0.10.4</vavr.version>
+        <spring.boot.version>2.5.3</spring.boot.version>
         <sonar.organization>intomicroservices</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <vavr.version>0.10.4</vavr.version>
 
     </properties>
 
@@ -53,6 +58,17 @@
                 <artifactId>user-service-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>klon</groupId>
+                <artifactId>user-service-rest-spring-dummy</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>klon</groupId>
+                <artifactId>user-service-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -90,6 +106,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+            <dependency>
+                <!-- Dependency definitions above override what's specified in the pom imported here -->
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
