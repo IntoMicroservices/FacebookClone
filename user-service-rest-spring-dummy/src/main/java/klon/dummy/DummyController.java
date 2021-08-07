@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("${user.rest.base:}")
+@SuppressWarnings("all")//disable sonar for the class
 public class DummyController {
 
     @Autowired
