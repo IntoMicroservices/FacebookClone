@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceImplTest {
+class UserServiceImplTest {
 
     @Mock
     UserRepository repoMock;
@@ -39,11 +39,11 @@ public class UserServiceImplTest {
         User serviceUser = User.builder().userId(randomAlphanumeric(10)).build();
         klon.user.repo.api.User repoUser = klon.user.repo.api.User.builder().userId(serviceUser.getUserId()).build();
 
-        when(mapperMock.toRepoUser(eq(serviceUser))).thenReturn(repoUser);
+        when(mapperMock.toRepoUser(serviceUser)).thenReturn(repoUser);
 
         service.addUser(serviceUser);
 
-        verify(repoMock).addUser(eq(repoUser));
+        verify(repoMock).addUser(repoUser);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class UserServiceImplTest {
     void addUserShouldThrowWhenRepoThrows() {
         User serviceUser = User.builder().userId(randomAlphanumeric(10)).build();
         klon.user.repo.api.User repoUser = klon.user.repo.api.User.builder().userId(serviceUser.getUserId()).build();
-        when(mapperMock.toRepoUser(eq(serviceUser))).thenReturn(repoUser);
+        when(mapperMock.toRepoUser(serviceUser)).thenReturn(repoUser);
 
         doThrow(new klon.user.repo.api.UserExistsException("userId")).when(repoMock).addUser(any());
 
@@ -62,7 +62,7 @@ public class UserServiceImplTest {
     @ValueSource(booleans = {true, false})
     void existsShouldReturnWhatRepoReturns(boolean exists) {
         String username = randomAlphanumeric(10);
-        when(repoMock.exists(eq(username))).thenReturn(exists);
+        when(repoMock.exists(username)).thenReturn(exists);
 
         Assertions.assertEquals(exists, service.exists(username));
     }
@@ -73,8 +73,8 @@ public class UserServiceImplTest {
         klon.user.repo.api.User repoUser = klon.user.repo.api.User.builder().userId(username).build();
         User serviceUser = User.builder().userId(username).build();
 
-        when(repoMock.getUser(eq(username))).thenReturn(Optional.of(repoUser));
-        when(mapperMock.toServiceUser(eq(repoUser))).thenReturn(serviceUser);
+        when(repoMock.getUser(username)).thenReturn(Optional.of(repoUser));
+        when(mapperMock.toServiceUser(repoUser)).thenReturn(serviceUser);
 
         Assertions.assertEquals(serviceUser, service.getUser(username).get());
     }

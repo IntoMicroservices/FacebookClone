@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 
-public class UserMapperTest {
+class UserMapperTest {
     final UserMapper mapper = UserMapper.INSTANCE;
 
     @Test

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({UserRepoInmemConfiguration.class})
-public class UserServiceAutoConfiguration {
+class UserServiceAutoConfiguration {
 
     @Bean
     public UserService userService(UserRepository repo){
