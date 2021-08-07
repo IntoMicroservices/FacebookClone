@@ -9,9 +9,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class UserRepoInmemConfigurationTest {
 
     @Test
-    void dummyTest(){
+    void dummyTest() {
         // just to please sonar
-        Assertions.assertNotNull(new UserRepoInmemConfiguration().userRepository());
+        UserRepoInmemConfiguration config = new UserRepoInmemConfiguration();
+        Assertions.assertNotNull(config.userRepository());
 
     }
 
