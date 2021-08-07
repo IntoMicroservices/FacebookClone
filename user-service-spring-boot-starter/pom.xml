@@ -11,6 +11,14 @@
 
     <artifactId>user-service-spring-boot-starter</artifactId>
 
+    <properties>
+        <!-- Disable sonar check for this dummy module-->
+        <sonar.coverage.exclusions>
+            klon.user.service.autoconfigure.UserRepoInmemConfiguration,
+            klon.user.service.autoconfigure.UserServiceAutoConfiguration
+        </sonar.coverage.exclusions>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
