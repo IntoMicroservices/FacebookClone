@@ -11,6 +11,11 @@
 
     <artifactId>user-service-rest-spring-dummy</artifactId>
 
+    <properties>
+        <!-- Disable sonar check for this dummy module-->
+        <sonar.coverage.exclusions>**/*</sonar.coverage.exclusions>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

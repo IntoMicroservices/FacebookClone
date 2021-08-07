@@ -13,6 +13,7 @@
     <artifactId>dummy-spring-boot-app</artifactId>
 
     <properties>
+        <!-- Disable sonar check for this dummy module-->
         <sonar.coverage.exclusions>**/*</sonar.coverage.exclusions>
     </properties>
 
