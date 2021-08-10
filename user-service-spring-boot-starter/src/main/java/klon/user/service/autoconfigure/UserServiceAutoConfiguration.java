@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({UserRepoInmemConfiguration.class})
+@Import({UserRepoInmemConfiguration.class, UserRepoRedisConfiguration.class})
 class UserServiceAutoConfiguration {
 
     @Bean
-    public UserService userService(UserRepository repo){
+    public UserService userService(UserRepository repo) {
         return UserServiceImpl.builder().repo(repo).mapper(UserMapper.INSTANCE).build();
     }
 

@@ -12,7 +12,7 @@
     <artifactId>user-service-spring-boot-starter</artifactId>
 
     <properties>
-        <sonar.coverage.exclusions>**/UserRepoInmemConfiguration.java,**/UserServiceAutoConfiguration.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**/UserRepoInmemConfiguration.java,**/UserServiceAutoConfiguration.java,**/UserRepoRedisConfiguration.java</sonar.coverage.exclusions>
     </properties>
 
     <dependencies>
@@ -36,7 +36,17 @@
             <artifactId>user-repo-inmem</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>klon</groupId>
+            <artifactId>user-repo-redis</artifactId>
+            <version>${project.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <optional>true</optional>
+        </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
@@ -48,7 +58,6 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 

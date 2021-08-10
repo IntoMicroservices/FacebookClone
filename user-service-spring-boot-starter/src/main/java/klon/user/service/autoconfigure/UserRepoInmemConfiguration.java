@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class UserRepoInmemConfiguration {
 
     @Bean
-    UserRepository userRepository(){
+    UserRepository userRepository() {
         return UserRepositoryInmemImpl.builder().mapper(UserMapper.INSTANCE).build();
     }
 
