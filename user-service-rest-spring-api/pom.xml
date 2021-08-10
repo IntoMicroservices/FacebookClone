@@ -3,35 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <relativePath>../spring-boot-parent</relativePath>
+        <artifactId>klon</artifactId>
         <groupId>klon</groupId>
-        <artifactId>spring-boot-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dummy-spring-boot-app</artifactId>
-
-    <properties>
-        <!-- Disable sonar check for this dummy module-->
-        <sonar.coverage.exclusions>**/*</sonar.coverage.exclusions>
-    </properties>
-
+    <artifactId>user-service-rest-spring-api</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>klon</groupId>
-            <artifactId>user-service-rest-spring-dummy</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>klon</groupId>
-            <artifactId>user-service-spring-boot-starter</artifactId>
+            <artifactId>user-service-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>klon</groupId>
-            <artifactId>user-repo-inmem</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>
