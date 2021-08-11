@@ -29,6 +29,8 @@
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.language>java</sonar.language>
         <!-- end of jacoco props -->
+        <image.path>docker.io/intomicroservices/${project.artifactId}</image.path>
+        <jib.version>2.5.0</jib.version>
         <junit.version>5.7.2</junit.version>
         <lombok.version>1.18.20</lombok.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
@@ -97,6 +99,11 @@
                 <groupId>io.vavr</groupId>
                 <artifactId>vavr</artifactId>
                 <version>${vavr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
