@@ -11,10 +11,6 @@
 
     <artifactId>user-service-spring-boot-starter</artifactId>
 
-    <properties>
-        <sonar.coverage.exclusions>**/UserRepoInmemConfiguration.java,**/UserServiceAutoConfiguration.java,**/UserRepoRedisConfiguration.java</sonar.coverage.exclusions>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
