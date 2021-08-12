@@ -42,11 +42,6 @@
                 <dependency>
                     <groupId>klon</groupId>
                     <artifactId>user-repo-redis</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.redisson</groupId>
-                    <artifactId>redisson</artifactId>
                 </dependency>
             </dependencies>
         </profile>

@@ -62,6 +62,11 @@
             </dependency>
             <dependency>
                 <groupId>klon</groupId>
+                <artifactId>user-repo-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>klon</groupId>
                 <artifactId>user-service-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
