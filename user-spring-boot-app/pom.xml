@@ -25,7 +25,7 @@
 
     <profiles>
         <profile>
-            <id>inmem-repo</id>
+            <id>user-inmem</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -37,7 +37,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>redis-repo</id>
+            <id>user-redis</id>
             <dependencies>
                 <dependency>
                     <groupId>klon</groupId>
