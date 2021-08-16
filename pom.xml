@@ -32,6 +32,7 @@
         <!-- end of jacoco props -->
         <image.path>docker.io/intomicroservices/${project.artifactId}</image.path>
         <jib.version>2.5.0</jib.version>
+        <jna.version>5.8.0</jna.version>
         <embedded-redis.version>0.7.3</embedded-redis.version>
         <junit.version>5.7.2</junit.version>
         <lombok.version>1.18.20</lombok.version>
@@ -136,6 +137,13 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>testcontainers</artifactId>
                 <version>${testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!-- to fix issues with testcontainers on Apple M1 -->
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna</artifactId>
+                <version>${jna.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
