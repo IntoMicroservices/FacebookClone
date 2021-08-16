@@ -21,11 +21,31 @@
             <groupId>klon</groupId>
             <artifactId>user-service-spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>klon</groupId>
-            <artifactId>user-repo-inmem</artifactId>
-        </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>user-inmem</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>klon</groupId>
+                    <artifactId>user-repo-inmem</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>user-redis</id>
+            <dependencies>
+                <dependency>
+                    <groupId>klon</groupId>
+                    <artifactId>user-repo-redis</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
