@@ -34,7 +34,6 @@ class PostMapperTest {
                 .build();
         InmemPost inmem = mapper.toInmemPost(post);
 
-
         assertEquals(post.getPostId(), inmem.getPostId());
         assertEquals(post.getContent(), inmem.getContent());
         assertEquals(post.getCreatedTime(), inmem.getCreatedTime());
