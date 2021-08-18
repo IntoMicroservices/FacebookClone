@@ -8,6 +8,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>post-repo-api</module>
+        <module>post-repo-inmem</module>
         <module>user-repo-api</module>
         <module>user-repo-inmem</module>
         <module>user-repo-redis</module>
@@ -51,6 +53,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>klon</groupId>
+                <artifactId>post-repo-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>klon</groupId>
+                <artifactId>post-repo-inmem</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>klon</groupId>
                 <artifactId>user-repo-api</artifactId>
