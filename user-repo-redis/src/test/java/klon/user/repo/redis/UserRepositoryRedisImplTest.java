@@ -3,50 +3,33 @@ package klon.user.repo.redis;
 import klon.user.repo.api.User;
 import klon.user.repo.api.UserExistsException;
 import lombok.SneakyThrows;
-import org.apache.commons.lang3.SystemUtils;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.redisson.Redisson;
 import org.redisson.config.Config;
-import redis.embedded.RedisServer;
-import redis.embedded.RedisServerBuilder;
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Testcontainers
 class UserRepositoryRedisImplTest {
 
     UserRepositoryRedisImpl repo = null;
 
-    static RedisServer redisServer;
+    @Container
+    public GenericContainer redis = new GenericContainer(DockerImageName.parse("redis:6.2.5-alpine"))
+            .withExposedPorts(6379);
 
-    static {
-        RedisServerBuilder redisServerBuilder = RedisServer.builder()
-                .port(6379);
-        if (SystemUtils.IS_OS_WINDOWS) {
-            redisServerBuilder.setting("maxheap 1gb");
-        }
-        redisServer = redisServerBuilder
-                .build();
-    }
-
-    @BeforeAll
-    static void startRedis() {
-        redisServer.start();
-    }
-
-    @AfterAll
-    static void stopRedis() {
-        redisServer.stop();
-    }
 
     @BeforeEach
     void setUp() {
         Config config = new Config();
         config.useSingleServer()
-                .setAddress("redis://127.0.0.1:6379");
+                .setAddress(String.format("redis://%s:%d", redis.getHost(), redis.getFirstMappedPort()));
         repo = new UserRepositoryRedisImpl(UserMapper.INSTANCE, Redisson.create(config));
     }
 
