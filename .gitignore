@@ -1,6 +1,10 @@
 # The file was generated as noted below, but I'm not sure if allowing dome of InteliJ files is good idea.
 # For now I disable all of them.
 .idea/
+# Eclipse
+.project
+.classpath
+
 
 # The reminder of the file is unchanged.
 
