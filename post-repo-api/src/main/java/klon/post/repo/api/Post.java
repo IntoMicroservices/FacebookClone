@@ -15,11 +15,11 @@ public class Post {
     @ToString.Include
     private final String postId;
 
-    @ToString.Include
     private final String content;
 
     @ToString.Include
-    private final LocalDateTime createdTime;
+    @Builder.Default
+    private final LocalDateTime createdTime = LocalDateTime.now();
 
     @ToString.Include
     private final String userId;

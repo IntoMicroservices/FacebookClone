@@ -17,15 +17,12 @@ public class InmemPost {
     @EqualsAndHashCode.Include
     private final String postId;
 
-    @ToString.Include
-    @EqualsAndHashCode.Include
     private final String content;
 
     @ToString.Include
-    @EqualsAndHashCode.Include
-    private final LocalDateTime createdTime;
+    @Builder.Default
+    private final LocalDateTime createdTime = LocalDateTime.now();
 
     @ToString.Include
-    @EqualsAndHashCode.Include
     private final String userId;
 }

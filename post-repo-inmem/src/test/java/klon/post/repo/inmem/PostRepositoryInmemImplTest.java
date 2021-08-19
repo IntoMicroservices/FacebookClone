@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,20 +38,23 @@ class PostRepositoryInmemImplTest {
 
     @Test
     void shouldAddPostToCollectionForUser() {
-        Post post = Post.builder()
+        Post older = Post.builder()
                 .postId(randomAlphanumeric(10))
-                .content(randomAlphanumeric(100))
                 .userId(randomAlphanumeric(10))
                 .build();
-        repo.addPost(post);
-        repo.addPost(post);
-        List<Post> postsByUser = repo.getPostsByUser(post.getUserId());
+        Post newer = Post.builder()
+                .postId(randomAlphanumeric(10))
+                .userId(older.getUserId())
+                .build();
+        repo.addPost(older);
+        repo.addPost(newer);
+        Stream<Post> postsByUser = repo.getPostsByUser(older.getUserId());
 
-        assertEquals(2, postsByUser.size());
+        assertEquals(2, postsByUser.count());
     }
 
     @Test
-    void shouldReturnEmptyOptionalIfPostNotExist(){
+    void shouldReturnEmptyOptionalIfPostNotExist() {
         Optional<Post> post = repo.getPost(randomAlphanumeric(10));
 
         assertTrue(post.isEmpty());
@@ -68,8 +71,20 @@ class PostRepositoryInmemImplTest {
 
     @Test
     void shouldReturnEmptyCollectionForNonExistingUser() {
-        List<Post> postsByUser = repo.getPostsByUser(randomAlphanumeric(10));
+        Stream<Post> postsByUser = repo.getPostsByUser(randomAlphanumeric(10));
 
-        assertTrue(postsByUser.isEmpty());
+        assertEquals(0, postsByUser.count());
+    }
+
+    @Test
+    void shouldReturnStreamStartingWithPostIdDroppingOlderPosts() {
+        Post older = Post.builder().userId(randomAlphanumeric(10)).postId(randomAlphanumeric(10)).createdTime(LocalDateTime.now()).build();
+        Post newer = Post.builder().userId(older.getUserId()).postId(randomAlphanumeric(10)).createdTime(LocalDateTime.now()).build();
+
+        repo.addPost(older);
+        repo.addPost(newer);
+
+        Stream<Post> postsByUser = repo.getPostsByUser(older.getUserId(), newer.getPostId());
+        assertEquals(1, postsByUser.count());
     }
 }
