@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Builder
 @Getter
@@ -21,7 +21,7 @@ public class InmemPost {
 
     @ToString.Include
     @Builder.Default
-    private final LocalDateTime createdTime = LocalDateTime.now();
+    private final ZonedDateTime createdTime = ZonedDateTime.now();
 
     @ToString.Include
     private final String userId;

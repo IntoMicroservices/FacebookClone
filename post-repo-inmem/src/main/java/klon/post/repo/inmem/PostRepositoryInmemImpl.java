@@ -21,7 +21,7 @@ public class PostRepositoryInmemImpl implements PostRepository {
         posts.merge(post.getUserId(), Collections.synchronizedList(new ArrayList<>(Collections.singletonList(inmemPost))),
                 (inmemPosts, inmemPosts2) -> {
                     inmemPosts.addAll(inmemPosts2);
-                    return Collections.synchronizedList(inmemPosts);
+                    return inmemPosts;
                 });
     }
 
@@ -42,7 +42,7 @@ public class PostRepositoryInmemImpl implements PostRepository {
             return Stream.empty();
         }
         inmemPosts.sort(Comparator.comparing(InmemPost::getCreatedTime));
-        return inmemPosts.stream().map(mapper::toPost);
+        return List.copyOf(inmemPosts).stream().map(mapper::toPost);
     }
 
     @Override

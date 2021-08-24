@@ -3,10 +3,10 @@ package klon.post.repo.inmem;
 import klon.post.repo.api.Post;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PostMapperTest {
 
@@ -17,7 +17,7 @@ class PostMapperTest {
         InmemPost inmem = InmemPost.builder()
                 .postId(randomAlphanumeric(10))
                 .content(randomAlphanumeric(100))
-                .createdTime(LocalDateTime.now())
+                .createdTime(ZonedDateTime.now())
                 .build();
         Post post = mapper.toPost(inmem);
 
