@@ -5,15 +5,15 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PostRepositoryInmemImplTest {
@@ -98,18 +98,15 @@ class PostRepositoryInmemImplTest {
     void addNewPostInAnotherThreadShouldNotAffectReadingPosts() {
         CountDownLatch latch = new CountDownLatch(2);
         Post post = Post.builder().userId(randomAlphanumeric(10)).postId(randomAlphanumeric(10)).createdTime(ZonedDateTime.now()).build();
-        repo.addPost(post);
         Runnable thread1 = () -> {
-            List<Post> posts = repo.getPostsByUser(post.getUserId()).collect(Collectors.toList());
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // ignore
-            }
-            assertEquals(1, posts.size());
+            repo.addPost(post);
+            Stream<Post> posts = repo.getPostsByUser(post.getUserId());
+            await().pollDelay(Duration.ofSeconds(1, 500)).until(() -> true);
+            assertEquals(1, posts.count());
             latch.countDown();
         };
         Runnable thread2 = () -> {
+            await().pollDelay(Duration.ofSeconds(1)).until(() -> true);
             repo.addPost(post);
             latch.countDown();
         };

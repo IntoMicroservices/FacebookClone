@@ -32,6 +32,7 @@
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.language>java</sonar.language>
         <!-- end of jacoco props -->
+        <awaitility.version>4.1.0</awaitility.version>
         <image.path>docker.io/intomicroservices/${project.artifactId}</image.path>
         <jib.version>2.5.0</jib.version>
         <jna.version>5.8.0</jna.version>
@@ -130,6 +131,12 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>${awaitility.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
