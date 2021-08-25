@@ -6,6 +6,7 @@ import lombok.Builder;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 @Builder
@@ -21,6 +22,7 @@ public class PostRepositoryInmemImpl implements PostRepository {
         posts.merge(post.getUserId(), Collections.synchronizedList(new ArrayList<>(Collections.singletonList(inmemPost))),
                 (inmemPosts, inmemPosts2) -> {
                     inmemPosts.addAll(inmemPosts2);
+                    inmemPosts.sort((o1, o2) -> o1.getCreatedTime().compareTo(o2.getCreatedTime()) * -1);
                     return inmemPosts;
                 });
     }
@@ -41,12 +43,21 @@ public class PostRepositoryInmemImpl implements PostRepository {
         if (inmemPosts == null) {
             return Stream.empty();
         }
-        inmemPosts.sort(Comparator.comparing(InmemPost::getCreatedTime));
-        return List.copyOf(inmemPosts).stream().map(mapper::toPost);
+        List<InmemPost> copy;
+        synchronized (inmemPosts) {
+            copy = new ArrayList<>(inmemPosts);
+        }
+        return copy.stream().map(mapper::toPost);
     }
 
     @Override
     public Stream<Post> getPostsByUser(String userId, String postId) {
-        return getPostsByUser(userId).dropWhile(post -> !postId.equals(post.getPostId()));
+        return getPostsByUser(userId)
+                .dropWhile(oldestPostPredicate(postId))
+                .filter(oldestPostPredicate(postId));
+    }
+
+    private Predicate<Post> oldestPostPredicate(String postId) {
+        return post -> !postId.equals(post.getPostId());
     }
 }
