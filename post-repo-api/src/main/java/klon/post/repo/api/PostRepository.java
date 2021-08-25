@@ -12,7 +12,7 @@ public interface PostRepository {
     Stream<Post> getPostsByUser(String userId);
 
     /**
-     * Retrieves post for User starting with the Post having passed post id and no older than that.
+     * Returns in descending order posts for User starting from the next after given postId.
      * When all posts history is needed then use {@link #getPostsByUser(String)}
      *
      * @param userId User qualifier
