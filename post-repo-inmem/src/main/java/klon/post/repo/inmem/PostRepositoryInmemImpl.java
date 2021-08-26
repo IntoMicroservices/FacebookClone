@@ -22,7 +22,7 @@ public class PostRepositoryInmemImpl implements PostRepository {
         posts.merge(post.getUserId(), Collections.synchronizedList(new ArrayList<>(Collections.singletonList(inmemPost))),
                 (inmemPosts, inmemPosts2) -> {
                     inmemPosts.addAll(inmemPosts2);
-                    inmemPosts.sort((o1, o2) -> o1.getCreatedTime().compareTo(o2.getCreatedTime()) * -1);
+                    inmemPosts.sort((o1, o2) -> o2.getCreatedTime().compareTo(o1.getCreatedTime()));
                     return inmemPosts;
                 });
     }
