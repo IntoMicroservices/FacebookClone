@@ -1,0 +1,18 @@
+services:
+  docker-registry:
+    image: registry:2
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: true
+    ports:
+      - "5000:5000"
+#    restart: always
+  registry-browser:
+    image: klausmeyer/docker-registry-browser
+    environment:
+      DOCKER_REGISTRY_URL: http://docker-registry:5000
+      ENABLE_DELETE_IMAGES: true
+    ports:
+      - "7080:8080"
+ #   restart: always
+    depends_on:
+      - docker-registry
