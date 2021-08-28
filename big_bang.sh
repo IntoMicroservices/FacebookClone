@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
-./scripts/local-registry.sh up
+PROJECT_ROOT="$(pwd)"
+
+source ./scripts/local-registry.sh up
 mvn clean install
-./scripts/local-registry.sh down
+source ./scripts/local-registry.sh down
