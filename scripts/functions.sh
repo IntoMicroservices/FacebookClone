@@ -1,0 +1,3 @@
+scriptDir {
+  echo
+}
