@@ -19,6 +19,8 @@
 		<module>spring-boot-parent</module>
 		<module>user-service-rest-spring-api</module>
 		<module>user-spring-boot-app</module>
+		<module>dummy-spring-boot-app</module>
+		<module>dummy-service-api</module>
 	</modules>
 
 	<properties>
@@ -41,6 +43,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.release>11</maven.compiler.release>
+		<maven.help.plugin.version>3.2.0</maven.help.plugin.version>
 		<maven.surefire.version>2.22.2</maven.surefire.version>
 		<mockito.version>3.11.2</mockito.version>
 		<redisson.version>3.16.1</redisson.version>
@@ -97,6 +100,16 @@
 			<dependency>
 				<groupId>klon</groupId>
 				<artifactId>user-service-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummy-service-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummy-spring-boot-app</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -193,10 +206,29 @@
 					<artifactId>jib-maven-plugin</artifactId>
 					<version>${jib.version}</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+					<version>${maven.help.plugin.version}</version>
+					<executions>
+						<execution>
+							<id>show-profiles</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>active-profiles</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
+				<!-- display active profile in compile phase -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+				</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

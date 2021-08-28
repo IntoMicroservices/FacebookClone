@@ -15,6 +15,20 @@
     <artifactId>spring-boot-parent</artifactId>
     <packaging>pom</packaging>
 
+    <profiles>
+        <profile>
+            <id>docker-images</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,6 +57,24 @@
                     <configuration>
                         <mainClass>${start-class}</mainClass>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <configuration>
+                        <to>
+                            <image>${image.path}</image>
+                        </to>
+                        <allowInsecureRegistries>true</allowInsecureRegistries>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

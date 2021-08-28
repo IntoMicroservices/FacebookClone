@@ -1,0 +1,12 @@
+version: '3'
+services:
+  user-service:
+    image: localhost:5000/user-spring-boot-app
+    container_name: user-service
+    ports:
+      - "9080:8080"
+  dummy-service:
+    image: localhost:5000/dummy-spring-boot-app
+    container_name: dummy-service
+    ports:
+      - "9090:8080"
