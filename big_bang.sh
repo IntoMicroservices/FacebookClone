@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./docker/local-registry-up.sh
+./scripts/local-registry.sh up
 mvn clean install
-./docker/local-registry-down.sh
+./scripts/local-registry.sh down

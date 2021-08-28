@@ -1,3 +1,0 @@
-scriptDir {
-  echo
-}
