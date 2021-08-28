@@ -1,2 +1,4 @@
 #!/bin/bash
-docker-compose -f local-registry.yml -p local-registry up -d
+
+SCRIPT_DIR=$(dirname $(readlink -f $0))
+docker-compose -f $SCRIPT_DIR/local-registry.yml -p local-registry up -d
