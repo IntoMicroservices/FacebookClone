@@ -31,6 +31,30 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>arm64</id>
+            <activation>
+                <os>
+                    <arch>arm64</arch>
+                </os>
+            </activation>
+            <properties>
+                <docker.base.image>bellsoft/liberica-openjdk-alpine-musl:11</docker.base.image>
+                <docker.base.arch>arm64</docker.base.arch>
+            </properties>
+        </profile>
+        <profile>
+            <id>amd64</id>
+            <activation>
+                <os>
+                    <arch>amd64</arch>
+                </os>
+            </activation>
+            <properties>
+                <docker.base.image>bellsoft/liberica-openjdk-alpine-musl:11</docker.base.image>
+                <docker.base.arch>amd64</docker.base.arch>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -68,7 +92,10 @@
                     <artifactId>jib-maven-plugin</artifactId>
                     <configuration>
                         <from>
-                            <image>bellsoft/liberica-openjdk-alpine-musl:11</image>
+                            <image>${docker.base.image}</image>
+                            <platform>
+                                <architecture>${docker.base.arch}</architecture>
+                            </platform>
                         </from>
                         <to>
                             <image>${image.path}</image>
