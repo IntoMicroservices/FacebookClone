@@ -32,6 +32,7 @@
             </build>
         </profile>
         <profile>
+            <!-- for Apple M1 ... and other ARMs? -->
             <id>aarch64</id>
             <activation>
                 <os>
@@ -44,6 +45,7 @@
             </properties>
         </profile>
         <profile>
+            <!-- Intel/AMD -->
             <id>amd64</id>
             <activation>
                 <os>
