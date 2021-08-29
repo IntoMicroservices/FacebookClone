@@ -32,10 +32,10 @@
             </build>
         </profile>
         <profile>
-            <id>arm64</id>
+            <id>aarch64</id>
             <activation>
                 <os>
-                    <arch>arm64</arch>
+                    <arch>aarch64</arch>
                 </os>
             </activation>
             <properties>
