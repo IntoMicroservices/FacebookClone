@@ -34,7 +34,7 @@
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
 		<!-- end of jacoco props -->
-		<image.path>localhost:5000/${project.artifactId}</image.path>
+
 		<jib.version>3.1.4</jib.version>
 		<jna.version>5.8.0</jna.version>
 		<junit.version>5.7.2</junit.version>

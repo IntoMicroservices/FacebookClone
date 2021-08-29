@@ -15,6 +15,10 @@
     <artifactId>spring-boot-parent</artifactId>
     <packaging>pom</packaging>
 
+    <properties>
+        <image.path>localhost:5000/${project.artifactId}</image.path>
+    </properties>
+
     <profiles>
         <profile>
             <id>docker-images</id>
@@ -46,6 +50,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
                     <executions>
                         <execution>
                             <id>repackage</id>
@@ -62,9 +67,15 @@
                     <groupId>com.google.cloud.tools</groupId>
                     <artifactId>jib-maven-plugin</artifactId>
                     <configuration>
+                        <from>
+                            <image>bellsoft/liberica-openjdk-alpine-musl:11</image>
+                        </from>
                         <to>
                             <image>${image.path}</image>
                         </to>
+                        <container>
+                            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                        </container>
                         <allowInsecureRegistries>true</allowInsecureRegistries>
                     </configuration>
                     <executions>
@@ -83,31 +94,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <configuration>
-                    <from>
-                        <image>eclipse-temurin:11</image>
-                    </from>
-                    <to>
-                        <image>${image.path}</image>
-                    </to>
-                    <container>
-                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-                    </container>
-                    <allowInsecureRegistries>true</allowInsecureRegistries>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
