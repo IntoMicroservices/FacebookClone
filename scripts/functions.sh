@@ -26,8 +26,18 @@
    esac
 
     if [[ ! -z "$COMMAND" ]]; then
+        if [[ ! -z "$2" ]]
+          then
+            COUNTER=0
+            while [ "`docker inspect -f {{.State.Health.Status}} $2`" != "healthy" ]; do
+                let COUNTER+=1;
+                if [[ $COUNTER -gt 6 ]]; then
+                    break
+                fi
+                sleep 10;
+            done;
+        fi
+
         eval "$COMMAND $1"
     fi   
-
-
  }
