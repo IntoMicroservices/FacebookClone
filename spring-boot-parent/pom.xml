@@ -93,9 +93,12 @@
                     <configuration>
                         <from>
                             <image>${docker.base.image}</image>
-                            <platform>
+                            <platforms>
+                                <platform>
+                                    <os>linux</os>
                                 <architecture>${docker.base.arch}</architecture>
-                            </platform>
+                                </platform>
+                            </platforms>
                         </from>
                         <to>
                             <image>${image.path}</image>
