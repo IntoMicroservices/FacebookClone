@@ -15,12 +15,10 @@ import java.util.concurrent.TimeUnit;
 public class DummyController {
 
     @GetMapping("/hello")
-    public void hello(){
+    public void hello() throws InterruptedException{
         log.info("Hello called");
-        try {
-            TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextLong(100,500));
-        } catch (InterruptedException e) {
-        }
+        TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextLong(100,500));
+
     }
 
 
