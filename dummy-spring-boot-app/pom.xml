@@ -13,7 +13,7 @@
     <artifactId>dummy-spring-boot-app</artifactId>
 
     <properties>
-        <sonar.coverage.exclusions>**/DummyController.java</sonar.coverage.exclusions>
+        <sonar.skip>true</sonar.skip>
     </properties>
 
     <dependencies>
