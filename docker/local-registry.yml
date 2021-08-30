@@ -1,0 +1,27 @@
+version: '3'
+services:
+  docker-registry:
+    image: registry:2
+    container_name: docker-registry
+    volumes:
+      - docker-registry-volume:/var/lib/registry
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: 'true'
+    ports:
+      - "5000:5000"
+  #    restart: always
+  registry-browser:
+    image: klausmeyer/docker-registry-browser
+    container_name: docker-registry-browser
+    environment:
+      DOCKER_REGISTRY_URL: http://docker-registry:5000
+      ENABLE_DELETE_IMAGES: 'true'
+    ports:
+      - "7080:8080"
+    #   restart: always
+    depends_on:
+      - docker-registry
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080 || exit 1"
+volumes:
+  docker-registry-volume:
