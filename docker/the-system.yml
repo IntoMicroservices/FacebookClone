@@ -1,16 +1,51 @@
 version: '3'
 services:
-  user-service:
-    image: localhost:5000/user-spring-boot-app
-    container_name: user-service
+  config-server:
+    image: localhost:5000/config-server
+    container_name: config-server
     ports:
-      - "9080:8080"
+      - "9010:8080"
+    networks:
+      backend:
+        aliases:
+          - "config-server"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+
   dummy-service:
     image: localhost:5000/dummy-spring-boot-app
     container_name: dummy-service
+    environment:
+      SPRING_APPLICATION_NAME: dummy-service
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+      SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS: 20
+    depends_on:
+      - config-server
     ports:
-      - "9090:8080"
+      - "9999:8080"
+    networks:
+      backend:
+        aliases:
+          - "dummy-service"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+
+
+  user-service:
+    image: localhost:5000/user-spring-boot-app
+    container_name: user-service
+    depends_on:
+      - config-server
+    ports:
+      - "9020:8080"
+    networks:
+      backend:
+        aliases:
+          - "user-service"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+
+
+networks:
+  backend:
+    driver: bridge

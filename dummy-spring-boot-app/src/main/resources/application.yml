@@ -1,0 +1,11 @@
+#debug: true
+spring:
+  cloud:
+    config:
+      fail-fast: true
+
+dummy:
+  msg:
+    part1: This
+    part2: is
+    part3: local!
