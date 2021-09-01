@@ -13,7 +13,7 @@ services:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
       interval: 5s
       timeout: 10s
-      start_period: 10s
+#      start_period: 10s
       retries: 10
 
   dummy-service:
@@ -35,7 +35,7 @@ services:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
       interval: 5s
       timeout: 10s
-      start_period: 10s
+#      start_period: 10s
       retries: 10
 
 
@@ -54,7 +54,7 @@ services:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
       interval: 5s
       timeout: 10s
-      start_period: 10s
+#      start_period: 10s
       retries: 10
 
 
