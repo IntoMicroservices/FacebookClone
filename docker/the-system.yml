@@ -11,6 +11,10 @@ services:
           - "config-server"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      start_period: 10s
+      retries: 10
 
   dummy-service:
     image: localhost:5000/dummy-spring-boot-app
@@ -29,6 +33,10 @@ services:
           - "dummy-service"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      start_period: 10s
+      retries: 10
 
 
   user-service:
@@ -44,6 +52,10 @@ services:
           - "user-service"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      start_period: 10s
+      retries: 10
 
 
 networks:
