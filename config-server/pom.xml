@@ -12,6 +12,10 @@
 
     <artifactId>config-server</artifactId>
 
+    <properties>
+        <sonar.coverage.exclusions>**/ConfigServerApplication.java</sonar.coverage.exclusions>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
