@@ -5,8 +5,9 @@ DOCKER_DIR=$PROJECT_ROOT/docker
 
 if [ "$1" == "up" ]; then
   docker-compose -f $DOCKER_DIR/the-system.yml pull -q && docker-compose -f $DOCKER_DIR/the-system.yml -p the-system up -d
-  lauchBrowser http://localhost:9080/actuator/health user-service &
-  lauchBrowser http://localhost:9090/actuator/health dummy-service &
+  lauchBrowser http://localhost:9010/actuator/health config-server &
+  lauchBrowser http://localhost:9020/actuator/health user-service &
+  lauchBrowser http://localhost:9999/actuator/health dummy-service &
 else if [ "$1" == "down" ]; then
     docker-compose -f $DOCKER_DIR/the-system.yml -p the-system down -v
   else

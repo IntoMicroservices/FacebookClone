@@ -31,10 +31,10 @@
             COUNTER=0
             while [ "`docker inspect -f {{.State.Health.Status}} $2`" != "healthy" ]; do
                 let COUNTER+=1;
-                if [[ $COUNTER -gt 6 ]]; then
+                if [[ $COUNTER -gt 60 ]]; then
                     break
                 fi
-                sleep 10;
+                sleep 2;
             done;
         fi
 
