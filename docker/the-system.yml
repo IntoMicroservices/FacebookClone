@@ -1,5 +1,38 @@
 version: '3'
 services:
+  linux:
+    image: alpine
+    networks:
+      backend:
+
+
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      backend:
+        aliases:
+          - "redis"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+    volumes:
+      - redis_data_volume:/data
+
+
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "9050:8001"
+    networks:
+      backend:
+        aliases:
+          - "redisinsight"
+    volumes:
+      - redisinsight_db_volume:/db
+    depends_on:
+      - redis
+
   config-server:
     image: localhost:5000/config-server
     container_name: config-server
@@ -57,6 +90,9 @@ services:
 #      start_period: 10s
       retries: 10
 
+volumes:
+  redis_data_volume:
+  redisinsight_db_volume:
 
 networks:
   backend:
