@@ -19,12 +19,11 @@ services:
   dummy-service:
     image: localhost:5000/dummy-spring-boot-app
     container_name: dummy-service
+    restart: on-failure
     environment:
       SPRING_APPLICATION_NAME: dummy-service
       SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
       SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS: 20
-    depends_on:
-      - config-server
     ports:
       - "9999:8080"
     networks:
@@ -42,8 +41,7 @@ services:
   user-service:
     image: localhost:5000/user-spring-boot-app
     container_name: user-service
-    depends_on:
-      - config-server
+    restart: on-failure
     ports:
       - "9020:8080"
     networks:
