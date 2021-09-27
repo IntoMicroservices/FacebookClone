@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $PROJECT_ROOT/scripts/functions.sh
+source "$PROJECT_ROOT"/scripts/functions.sh
 
 # for macs do
 # brew install coreutils
@@ -10,14 +10,13 @@ source $PROJECT_ROOT/scripts/functions.sh
 DOCKER_DIR=$PROJECT_ROOT/docker
 
 if [ "$1" == "up" ]; then
-  docker-compose -f $DOCKER_DIR/local-registry.yml -p local-registry up -d
+  docker-compose -f "$DOCKER_DIR"/local-registry.yml -p local-registry up -d
   lauchBrowser http://localhost:7080 docker-registry-browser &
-else if [ "$1" == "down" ]; then
-    docker-compose -f $DOCKER_DIR/local-registry.yml -p local-registry down -v
-  else
-    echo "Usage: `basename $0` <up|down>"
-    exit 1;
-  fi
+elif [ "$1" == "down" ]; then
+  docker-compose -f "$DOCKER_DIR"/local-registry.yml -p local-registry down -v
+else
+  echo "Usage: $(basename $0) <up|down>"
+  exit 1;
 fi
 
 

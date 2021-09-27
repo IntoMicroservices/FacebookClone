@@ -32,6 +32,12 @@ services:
       - redisinsight_db_volume:/db
     depends_on:
       - redis
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8001 || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
 
   config-server:
     image: localhost:5000/config-server

@@ -1,6 +1,6 @@
 #!/bin/bash
 
- function lauchBrowser {
+ function launchBrowser {
    case "$OSTYPE" in
 #     solaris*) echo "SOLARIS" ;;
      darwin*)
@@ -29,7 +29,7 @@
         if [[ ! -z "$2" ]]
           then
             COUNTER=0
-            while [ "`docker inspect -f {{.State.Health.Status}} $2`" != "healthy" ]; do
+            while [ "$(docker inspect -f {{.State.Health.Status}} $2)" != "healthy" ]; do
                 let COUNTER+=1;
                 if [[ $COUNTER -gt 60 ]]; then
                     break
