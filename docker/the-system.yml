@@ -1,7 +1,10 @@
 version: '3'
 services:
   redis:
-    image: redis
+    # Just redis
+    #image: redis
+    # or redis with modules like RedisGraph, RedisTimeSeries, RedisGears - modules can be switched on and off
+    image: redislabs/redismod
     container_name: redis
     networks:
       backend:
