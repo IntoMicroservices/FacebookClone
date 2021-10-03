@@ -15,7 +15,6 @@ services:
     volumes:
       - redis_data_volume:/data
 
-
   redisinsight:
     image: redislabs/redisinsight:latest
     container_name: redisinsight
@@ -40,6 +39,10 @@ services:
     container_name: config-server
     ports:
       - "9010:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: redis
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
     networks:
       backend:
         aliases:
@@ -58,7 +61,6 @@ services:
     environment:
       SPRING_APPLICATION_NAME: dummy-service
       SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
-      SPRING_CLOUD_CONFIG_RETRY_MAX-ATTEMPTS: 20
     ports:
       - "9999:8080"
     networks:

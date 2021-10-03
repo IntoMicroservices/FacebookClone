@@ -40,7 +40,7 @@
                 </os>
             </activation>
             <properties>
-                <docker.base.image>bellsoft/liberica-openjdk-alpine-musl:11</docker.base.image>
+                <docker.base.image>bellsoft/liberica-openjdk-alpine-musl:17</docker.base.image>
                 <docker.base.arch>arm64</docker.base.arch>
             </properties>
         </profile>
@@ -53,7 +53,7 @@
                 </os>
             </activation>
             <properties>
-                <docker.base.image>bellsoft/liberica-openjdk-alpine-musl:11</docker.base.image>
+                <docker.base.image>bellsoft/liberica-openjdk-alpine-musl:17</docker.base.image>
                 <docker.base.arch>amd64</docker.base.arch>
             </properties>
         </profile>
