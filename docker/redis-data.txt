@@ -1,0 +1,1 @@
+HMSET dummy-service-default debug true dummy.msg.part1 Hello dummy.msg.part2 from dummy.msg.part3 "redis config!"
