@@ -19,7 +19,7 @@ services:
     image: redislabs/redisinsight:latest
     container_name: redisinsight
     ports:
-      - "9050:8001"
+      - "10010:8001"
     networks:
       backend:
         aliases:
@@ -38,8 +38,9 @@ services:
     image: localhost:5000/config-server
     container_name: config-server
     ports:
-      - "9010:8080"
+      - "10020:8080"
     environment:
+      DEBUG: "true"
       SPRING_PROFILES_ACTIVE: redis
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
@@ -47,6 +48,28 @@ services:
       backend:
         aliases:
           - "config-server"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
+  service-registry:
+    image: localhost:5000/service-registry
+    container_name: service-registry
+    restart: on-failure
+    ports:
+      - "10030:8080"
+      - "8761:8761"
+    environment:
+      SPRING_APPLICATION_NAME: service-registry
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+      SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED: "false"
+    networks:
+      backend:
+        aliases:
+          - "service-registry"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
       interval: 5s
@@ -62,7 +85,7 @@ services:
       SPRING_APPLICATION_NAME: dummy-service
       SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
     ports:
-      - "9999:8080"
+      - "9010:8080"
     networks:
       backend:
         aliases:
