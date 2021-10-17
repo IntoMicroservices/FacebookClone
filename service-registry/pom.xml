@@ -12,6 +12,10 @@
 
     <artifactId>service-registry</artifactId>
 
+    <properties>
+        <sonar.coverage.exclusions>**/ServiceRegistry.java</sonar.coverage.exclusions>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
