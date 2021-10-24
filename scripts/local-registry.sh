@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source "$PROJECT_ROOT"/scripts/functions.sh
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && (pwd -W 2> /dev/null || pwd))
 
-
-DOCKER_DIR=$PROJECT_ROOT/docker
+source "$SCRIPT_DIR"/functions.sh
+DOCKER_DIR="$SCRIPT_DIR"/../docker
 
 if [ "$1" == "up" ]; then
   docker-compose -f "$DOCKER_DIR"/local-registry.yml -p local-registry up -d

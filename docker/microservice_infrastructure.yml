@@ -1,0 +1,86 @@
+version: '3'
+services:
+  redis:
+    # Just redis
+    image: redis
+    # or redis with modules like RedisGraph, RedisTimeSeries, RedisGears - modules can be switched on and off
+    #image: redislabs/redismod
+    container_name: redis
+    networks:
+      backend:
+        aliases:
+          - "redis"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+    volumes:
+      - redis_data_volume:/data
+
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "10010:8001"
+    networks:
+      backend:
+        aliases:
+          - "redisinsight"
+    volumes:
+      - redisinsight_db_volume:/db
+    depends_on:
+      - redis
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8001 || exit 1"
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  config-server:
+    image: localhost:5000/config-server
+    container_name: config-server
+    ports:
+      - "10020:8080"
+    environment:
+      DEBUG: "true"
+      SPRING_PROFILES_ACTIVE: redis
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    networks:
+      backend:
+        aliases:
+          - "config-server"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
+  service-registry:
+    image: localhost:5000/service-registry
+    container_name: service-registry
+    restart: on-failure
+    ports:
+      - "10030:8080"
+      - "8761:8761"
+    environment:
+      SPRING_APPLICATION_NAME: service-registry
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+      SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED: "false"
+    networks:
+      backend:
+        aliases:
+          - "service-registry"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
+volumes:
+  redis_data_volume:
+  redisinsight_db_volume:
+
+networks:
+  backend:
+    driver: bridge
