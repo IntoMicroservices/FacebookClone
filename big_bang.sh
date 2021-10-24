@@ -9,9 +9,7 @@ source "$SCRIPT_DIRS"/microservice_infrastructure.sh up
 source "$SCRIPT_DIRS"/microservices.sh build
 source "$SCRIPT_DIRS"/microservices.sh up
 
-
 read -p "************ Press enter to shutdown and cleanup everything ******************"
-
 
 source "$SCRIPT_DIRS"/microservices.sh down
 source "$SCRIPT_DIRS"/microservice_infrastructure.sh down
