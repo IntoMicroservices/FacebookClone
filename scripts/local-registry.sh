@@ -5,7 +5,6 @@ DOCKER_DIR="$SCRIPTS_DIR"/../docker
 
 source "$SCRIPTS_DIR"/functions.sh
 
-
 if [ "$1" == "up" ]; then
   docker-compose -f "$DOCKER_DIR"/local-registry.yml -p local-registry up -d
   launchBrowser http://localhost:7080 docker-registry-browser &

@@ -83,5 +83,8 @@ volumes:
 
 networks:
   backend:
+<<<<<<< HEAD
     name: backend_network
+=======
+>>>>>>> 1667dd3 (WIP)
     driver: bridge
