@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="$(pwd)"
+PROJECT_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && (pwd -W 2> /dev/null || pwd))
 
-source ./scripts/functions.sh
+source "$PROJECT_ROOT"/scripts/functions.sh
 
-source ./scripts/local-registry.sh up
-mvn clean install -P docker-images
+source "$PROJECT_ROOT"/scripts/local-registry.sh up
+(cd "$PROJECT_ROOT"; mvn clean install -P docker-images)
 
-source ./scripts/the-system.sh up
+source "$PROJECT_ROOT"/scripts/the-system.sh up
 
 read -p "************ Press enter to shutdown and cleanup everything ******************"
-source ./scripts/the-system.sh down
+source "$PROJECT_ROOT"/scripts/the-system.sh down
 
 #remove our images from local docker cache
 docker rmi $(docker images --filter=reference="localhost:5000/*" -q)
 
-source ./scripts/local-registry.sh down
+source "$PROJECT_ROOT"/scripts/local-registry.sh down

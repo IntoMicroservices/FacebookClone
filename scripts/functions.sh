@@ -53,7 +53,7 @@
        ;;
    esac
 
-    if [[ ! -z "$COMMAND" ]]; then
+    if [[ -n "$COMMAND" ]]; then
         waitForHealthyContainer "$2" 60
         eval "$COMMAND $1"
     fi   

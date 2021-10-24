@@ -2,10 +2,6 @@
 
 source "$PROJECT_ROOT"/scripts/functions.sh
 
-# for macs do
-# brew install coreutils
-# to get greadlink
-#SCRIPT_DIR=$(dirname $(greadlink -f $0 2> /dev/null || readlink -f $0 2> /dev/null))
 
 DOCKER_DIR=$PROJECT_ROOT/docker
 
