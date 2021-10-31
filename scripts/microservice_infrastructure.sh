@@ -1,9 +1,9 @@
 #!/bin/bash
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && (pwd -W 2> /dev/null || pwd))
+SCRIPTS_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && (pwd -W 2> /dev/null || pwd))
+DOCKER_DIR="$SCRIPTS_DIR"/../docker
 
-source "$SCRIPT_DIR"/functions.sh
-DOCKER_DIR="$SCRIPT_DIR"/../docker
+source "$SCRIPTS_DIR"/functions.sh
 
 function feedRedis {
   if [[ -n "$1" ]]; then
@@ -30,7 +30,7 @@ elif [ "$1" == "down" ]; then
   docker-compose -f "$DOCKER_DIR"/microservice_infrastructure.yml -p microservice_infrastructure down -v || exit
 elif [ "$1" == "build" ]; then
 #images are pushed to local registry
-  (cd "$SCRIPT_DIR"/.. || exit; mvn -pl config-server,service-registry -am install -P docker-images || exit)
+  (cd "$SCRIPTS_DIR"/.. || exit; mvn -pl config-server,service-registry -am install -P docker-images || exit)
 else
   echo "Usage: $(basename "$0") <build|up|down>"
   exit 1;
