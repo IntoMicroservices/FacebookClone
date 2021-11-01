@@ -9,7 +9,7 @@ function feedRedis {
   if [[ -n "$1" ]]; then
      waitForHealthyContainer "$1"
      docker run --rm -d \
-     --network="container:redis" \
+     --network="container:$1" \
      --mount type=bind,source="${DOCKER_DIR}"/redis-data.txt,target=/tmp/redis-data.txt \
      redis \
      sh -c "cat /tmp/redis-data.txt | redis-cli -h redis -p 6379 --pipe"
