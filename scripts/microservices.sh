@@ -16,7 +16,7 @@ elif [ "$1" == "down" ]; then
     docker-compose -f "$DOCKER_DIR"/microservices.yml -p microservices down -v
 elif [ "$1" == "build" ]; then
 #images are pushed to local registry
-  (cd "$SCRIPTS_DIR"/.. || exit; mvn -pl dummy-spring-boot-app,user-spring-boot-app -am install -P docker-images || exit)
+  (cd "$SCRIPTS_DIR"/.. || exit; mvn -pl dummy-spring-boot-app -am install -P docker-images || exit)
 
 else
     echo "Usage: $(basename "$0") <up|down>"
