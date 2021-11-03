@@ -1,19 +1,22 @@
 #!/bin/bash
 set -e
 
-PROJECT_ROOT="$(pwd)"
+SCRIPT_DIRS=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && (pwd -W 2> /dev/null || pwd))/scripts
 
-source ./scripts/functions.sh
+source "$SCRIPT_DIRS"/local-registry.sh up
+source "$SCRIPT_DIRS"/microservice_infrastructure.sh build
+source "$SCRIPT_DIRS"/microservice_infrastructure.sh up
+source "$SCRIPT_DIRS"/microservices.sh build
+source "$SCRIPT_DIRS"/microservices.sh up
 
-source ./scripts/local-registry.sh up
-mvn clean install -P docker-images
-
-source ./scripts/the-system.sh up
 
 read -p "************ Press enter to shutdown and cleanup everything ******************"
-source ./scripts/the-system.sh down
+
+
+source "$SCRIPT_DIRS"/microservices.sh down
+source "$SCRIPT_DIRS"/microservice_infrastructure.sh down
+source "$SCRIPT_DIRS"/local-registry.sh down
+
 
 #remove our images from local docker cache
-docker rmi $(docker images --filter=reference="localhost:5000/*" -q)
-
-source ./scripts/local-registry.sh down
+#docker rmi $(docker images --filter=reference="localhost:5000/*" -q)

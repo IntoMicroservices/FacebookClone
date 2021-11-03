@@ -1,13 +1,10 @@
 #!/bin/bash
 
-source "$PROJECT_ROOT"/scripts/functions.sh
+SCRIPTS_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && (pwd -W 2> /dev/null || pwd))
+DOCKER_DIR="$SCRIPTS_DIR"/../docker
 
-# for macs do
-# brew install coreutils
-# to get greadlink
-#SCRIPT_DIR=$(dirname $(greadlink -f $0 2> /dev/null || readlink -f $0 2> /dev/null))
+source "$SCRIPTS_DIR"/functions.sh
 
-DOCKER_DIR=$PROJECT_ROOT/docker
 
 if [ "$1" == "up" ]; then
   docker-compose -f "$DOCKER_DIR"/local-registry.yml -p local-registry up -d
@@ -15,7 +12,7 @@ if [ "$1" == "up" ]; then
 elif [ "$1" == "down" ]; then
   docker-compose -f "$DOCKER_DIR"/local-registry.yml -p local-registry down -v
 else
-  echo "Usage: $(basename $0) <up|down>"
+  echo "Usage: $(basename "$0") <up|down>"
   exit 1;
 fi
 

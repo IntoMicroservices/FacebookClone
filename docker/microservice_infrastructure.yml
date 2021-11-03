@@ -2,9 +2,9 @@ version: '3'
 services:
   redis:
     # Just redis
-    #image: redis
+    image: redis
     # or redis with modules like RedisGraph, RedisTimeSeries, RedisGears - modules can be switched on and off
-    image: redislabs/redismod
+    #image: redislabs/redismod
     container_name: redis
     networks:
       backend:
@@ -77,48 +77,11 @@ services:
       #      start_period: 10s
       retries: 10
 
-  dummy-service:
-    image: localhost:5000/dummy-spring-boot-app
-    container_name: dummy-service
-    restart: on-failure
-    environment:
-      SPRING_APPLICATION_NAME: dummy-service
-      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
-    ports:
-      - "9010:8080"
-    networks:
-      backend:
-        aliases:
-          - "dummy-service"
-    healthcheck:
-      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
-      interval: 5s
-      timeout: 10s
-      #      start_period: 10s
-      retries: 10
-
-
-  user-service:
-    image: localhost:5000/user-spring-boot-app
-    container_name: user-service
-    restart: on-failure
-    ports:
-      - "9020:8080"
-    networks:
-      backend:
-        aliases:
-          - "user-service"
-    healthcheck:
-      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
-      interval: 5s
-      timeout: 10s
-      #      start_period: 10s
-      retries: 10
-
 volumes:
   redis_data_volume:
   redisinsight_db_volume:
 
 networks:
   backend:
+    name: backend_network
     driver: bridge

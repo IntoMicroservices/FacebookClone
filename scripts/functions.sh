@@ -3,7 +3,7 @@
  function waitForHealthyContainer {
    if [[ -n "$1" ]]
      then
-       MAX_TRIES=60
+       MAX_TRIES=10
        if [[ -n "$2" ]]
        then
          MAX_TRIES=$2
@@ -14,19 +14,12 @@
            if [[ $COUNTER -gt $MAX_TRIES ]]; then
                break
            fi
-           sleep 1;
+           sleep 5;
        done;
    fi
  }
 
- function feedRedis {
-   waitForHealthyContainer redis
-   docker run --rm -d \
-   --network="container:redis" \
-   --mount type=bind,source="${PROJECT_ROOT}"/docker/redis-data.txt,target=/tmp/redis-data.txt \
-   redis \
-   sh -c "cat /tmp/redis-data.txt | redis-cli -h redis -p 6379 --pipe"
- }
+
 
  function launchBrowser {
    case "$OSTYPE" in
@@ -53,8 +46,8 @@
        ;;
    esac
 
-    if [[ ! -z "$COMMAND" ]]; then
-        waitForHealthyContainer "$2" 60
+    if [[ -n "$COMMAND" ]]; then
+        waitForHealthyContainer "$2" 10
         eval "$COMMAND $1"
     fi   
  }
