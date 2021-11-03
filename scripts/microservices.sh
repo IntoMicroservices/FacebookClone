@@ -9,14 +9,17 @@ if [ "$1" == "up" ]; then
   docker-compose -f "$DOCKER_DIR"/microservices.yml pull -q && docker-compose -f "$DOCKER_DIR"/microservices.yml \
     -p microservices up -d
 
-  launchBrowser http://localhost:9020/actuator/health user-service &
-  launchBrowser http://localhost:9010/actuator/health dummy-service &
+#  launchBrowser http://localhost:9020/actuator/health user-service &
+#  launchBrowser http://localhost:9010/actuator/health dummy-service &
+
+launchBrowser http://localhost:9030/actuator/health dummya-mono-service &
+launchBrowser http://localhost:9030/getAB dummya-mono-service &
 
 elif [ "$1" == "down" ]; then
     docker-compose -f "$DOCKER_DIR"/microservices.yml -p microservices down -v
 elif [ "$1" == "build" ]; then
 #images are pushed to local registry
-  (cd "$SCRIPTS_DIR"/.. || exit; mvn -pl dummy-spring-boot-app -am install -P docker-images || exit)
+  (cd "$SCRIPTS_DIR"/.. || exit; mvn -pl dummya-mono-rest-app -am install -P docker-images || exit)
 
 else
     echo "Usage: $(basename "$0") <up|down>"

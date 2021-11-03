@@ -83,12 +83,5 @@ volumes:
 
 networks:
   backend:
-<<<<<<< HEAD
-<<<<<<< HEAD
     name: backend_network
-=======
->>>>>>> 1667dd3 (WIP)
-=======
-    name: backend_network
->>>>>>> 2e51719 (buil/deploy/run pipeline scripts restructurised)
     driver: bridge

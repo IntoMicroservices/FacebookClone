@@ -1,3 +1,8 @@
+HSET dummya-mono-service-default debug true
+HSET dummya-mono-service-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
+HSET dummya-mono-service-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummya-mono-service-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
+
 HSET dummy-service-default debug true dummy.msg.part1 Hello dummy.msg.part2 from dummy.msg.part3 "redis config!"
 HSET dummy-service-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
 HSET dummy-service-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone

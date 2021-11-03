@@ -11,10 +11,13 @@
 		<module>config-server</module>
 		<module>service-registry</module>
 		<module>spring-boot-parent</module>
-		<module>dummy-spring-boot-app</module>
-		<module>dummy-service-api</module>
-		<module>dummy-service-local</module>
-		<module>dummy-service-spring-boot-starter</module>
+
+		<module>dummya-service-api</module>
+		<module>dummya-service-local-spring-boot-starter</module>
+		<module>dummya-rest-endpoint-spring-boot-starter</module>
+		<module>dummya-mono-rest-app</module>
+		<module>dummyb-service-api</module>
+		<module>dummyb-service-local-spring-boot-starter</module>
 		<!--module>post-repo-api</module>
 		<module>post-repo-inmem</module>
 		<module>user-repo-api</module>
@@ -111,19 +114,36 @@
 				<artifactId>user-service-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
+
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummy-service-api</artifactId>
+				<artifactId>dummya-service-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummy-service-local</artifactId>
+				<artifactId>dummya-service-local-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummy-spring-boot-app</artifactId>
+				<artifactId>dummya-endpoint-rest-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-service-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-service-local-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-endpoint-rest-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
