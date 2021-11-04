@@ -7,5 +7,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackageClasses = DummyAServiceController.class)
-public class DummyAEndpointRestAutoConfiguration {
+public class DummyARestEndpointAutoConfiguration {
 }

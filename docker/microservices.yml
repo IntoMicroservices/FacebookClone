@@ -1,14 +1,14 @@
 version: '3'
 services:
   dummya-mono-service:
-    image: localhost:5000/dummya-mono-rest-app
+    image: localhost:5000/dummya-mono-app
     container_name: dummya-mono-service
     restart: on-failure
     environment:
       SPRING_APPLICATION_NAME: dummya-mono-service
       SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
     ports:
-      - "9030:8080"
+      - "9000:8080"
     networks:
       backend:
         aliases:
@@ -20,25 +20,26 @@ services:
       #      start_period: 10s
       retries: 10
 
-#  dummy-service:
-#    image: localhost:5000/dummy-spring-boot-app
-#    container_name: dummy-service
-#    restart: on-failure
-#    environment:
-#      SPRING_APPLICATION_NAME: dummy-service
-#      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
-#    ports:
-#      - "9010:8080"
-#    networks:
-#      backend:
-#        aliases:
-#          - "dummy-service"
-#    healthcheck:
-#      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
-#      interval: 5s
-#      timeout: 10s
-#      #      start_period: 10s
-#      retries: 10
+  dummyb-service:
+    image: localhost:5000/dummyb-app
+    container_name: dummyb-service
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: dummyb-service
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+    ports:
+      - "9010:8080"
+    networks:
+      backend:
+        aliases:
+          - "dummyb-service"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
 
 #  user-service:
 #    image: localhost:5000/user-spring-boot-app

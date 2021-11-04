@@ -15,9 +15,11 @@
 		<module>dummya-service-api</module>
 		<module>dummya-service-local-spring-boot-starter</module>
 		<module>dummya-rest-endpoint-spring-boot-starter</module>
-		<module>dummya-mono-rest-app</module>
+		<module>dummya-mono-app</module>
 		<module>dummyb-service-api</module>
 		<module>dummyb-service-local-spring-boot-starter</module>
+		<module>dummyb-rest-endpoint-spring-boot-starter</module>
+		<module>dummyb-app</module>
 		<!--module>post-repo-api</module>
 		<module>post-repo-inmem</module>
 		<module>user-repo-api</module>
@@ -115,7 +117,6 @@
 				<version>${project.version}</version>
 			</dependency>
 
-
 			<dependency>
 				<groupId>klon</groupId>
 				<artifactId>dummya-service-api</artifactId>
@@ -128,9 +129,10 @@
 			</dependency>
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummya-endpoint-rest-spring-boot-starter</artifactId>
+				<artifactId>dummya-rest-endpoint-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>klon</groupId>
 				<artifactId>dummyb-service-api</artifactId>
@@ -143,7 +145,7 @@
 			</dependency>
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummyb-endpoint-rest-spring-boot-starter</artifactId>
+				<artifactId>dummyb-rest-endpoint-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

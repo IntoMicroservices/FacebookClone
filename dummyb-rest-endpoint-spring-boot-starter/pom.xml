@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dummya-rest-endpoint-spring-boot-starter</artifactId>
+    <artifactId>dummyb-rest-endpoint-spring-boot-starter</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>klon</groupId>
-            <artifactId>dummya-service-api</artifactId>
+            <artifactId>dummyb-service-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

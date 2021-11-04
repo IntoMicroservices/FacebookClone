@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  klon.dummya.DummyARestEndpointAutoConfiguration
+  klon.dummyb.DummyBRestEndpointAutoConfiguration

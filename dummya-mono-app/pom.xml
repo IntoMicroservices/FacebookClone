@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dummya-mono-rest-app</artifactId>
+    <artifactId>dummya-mono-app</artifactId>
 
     <dependencies>
         <dependency>
@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>klon</groupId>
-            <artifactId>dummya-endpoint-rest-spring-boot-starter</artifactId>
+            <artifactId>dummya-rest-endpoint-spring-boot-starter</artifactId>
         </dependency>
 
 
