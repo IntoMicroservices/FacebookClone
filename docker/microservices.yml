@@ -20,6 +20,26 @@ services:
       #      start_period: 10s
       retries: 10
 
+  dummya-service:
+    image: localhost:5000/dummya-app
+    container_name: dummya-service
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: dummya-service
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+    ports:
+      - "9010:8080"
+    networks:
+      backend:
+        aliases:
+          - "dummya-service"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
   dummyb-service:
     image: localhost:5000/dummyb-app
     container_name: dummyb-service
@@ -28,7 +48,7 @@ services:
       SPRING_APPLICATION_NAME: dummyb-service
       SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
     ports:
-      - "9010:8080"
+      - "9020:8080"
     networks:
       backend:
         aliases:

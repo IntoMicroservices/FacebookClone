@@ -20,6 +20,8 @@
 		<module>dummyb-service-local-spring-boot-starter</module>
 		<module>dummyb-rest-endpoint-spring-boot-starter</module>
 		<module>dummyb-app</module>
+		<module>dummyb-service-discovery-rest-spring-boot-starter</module>
+		<module>dummya-app</module>
 		<!--module>post-repo-api</module>
 		<module>post-repo-inmem</module>
 		<module>user-repo-api</module>
@@ -141,6 +143,11 @@
 			<dependency>
 				<groupId>klon</groupId>
 				<artifactId>dummyb-service-local-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-service-discovery-rest-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
