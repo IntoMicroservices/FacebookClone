@@ -1,18 +1,18 @@
 version: '3'
 services:
-  dummy-service:
-    image: localhost:5000/dummy-spring-boot-app
-    container_name: dummy-service
+  dummya-mono-service:
+    image: localhost:5000/dummya-mono-app
+    container_name: dummya-mono-service
     restart: on-failure
     environment:
-      SPRING_APPLICATION_NAME: dummy-service
+      SPRING_APPLICATION_NAME: dummya-mono-service-app
       SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
     ports:
-      - "9010:8080"
+      - "9000:8080"
     networks:
       backend:
         aliases:
-          - "dummy-service"
+          - "dummya-mono-service"
     healthcheck:
       test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
       interval: 5s
@@ -20,12 +20,56 @@ services:
       #      start_period: 10s
       retries: 10
 
-  user-service:
-    image: localhost:5000/user-spring-boot-app
-    container_name: user-service
+  dummya-service:
+    image: localhost:5000/dummya-app
+    container_name: dummya-service
     restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: dummya-service-app
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+    ports:
+      - "9010:8080"
+    networks:
+      backend:
+        aliases:
+          - "dummya-service"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
+  dummyb-service:
+    image: localhost:5000/dummyb-app
+    container_name: dummyb-service
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: dummyb-service-app
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
     ports:
       - "9020:8080"
+    networks:
+      backend:
+        aliases:
+          - "dummyb-service"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
+
+  user-service:
+    image: localhost:5000/user-app
+    container_name: user-service
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: user-service-app
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+    ports:
+      - "9030:8080"
     networks:
       backend:
         aliases:

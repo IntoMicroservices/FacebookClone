@@ -8,22 +8,35 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>post-repo-api</module>
-		<module>post-repo-inmem</module>
+		<module>spring-boot-parent</module>
+
+		<module>config-server</module>
+		<module>service-registry</module>
+
+		<module>dummyb-service-api</module>
+		<module>dummyb-service-local-spring-boot-starter</module>
+		<module>dummyb-rest-endpoint-spring-boot-starter</module>
+		<module>dummyb-app</module>
+		<module>dummyb-service-discovery-rest-spring-boot-starter</module>
+
+		<module>dummya-service-api</module>
+		<module>dummya-service-local-spring-boot-starter</module>
+		<module>dummya-rest-endpoint-spring-boot-starter</module>
+		<module>dummya-mono-app</module>
+		<module>dummya-app</module>
+
 		<module>user-repo-api</module>
 		<module>user-repo-inmem</module>
 		<module>user-repo-redis</module>
 		<module>user-service-api</module>
 		<module>user-service-impl</module>
 		<module>user-service-spring-boot-starter</module>
-		<module>spring-boot-parent</module>
 		<module>user-service-rest-spring-api</module>
-		<module>user-spring-boot-app</module>
-		<module>dummy-spring-boot-app</module>
-		<module>dummy-service-api</module>
-		<module>config-server</module>
-        <module>service-registry</module>
-    </modules>
+		<module>user-app</module>
+
+		<!--module>post-repo-api</module>
+		<module>post-repo-inmem</module-->
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -107,14 +120,41 @@
 				<artifactId>user-service-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummy-service-api</artifactId>
+				<artifactId>dummya-service-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>klon</groupId>
-				<artifactId>dummy-spring-boot-app</artifactId>
+				<artifactId>dummya-service-local-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummya-rest-endpoint-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-service-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-service-local-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-service-discovery-rest-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>klon</groupId>
+				<artifactId>dummyb-rest-endpoint-spring-boot-starter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

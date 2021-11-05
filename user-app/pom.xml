@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <relativePath>../spring-boot-parent</relativePath>
+        <groupId>klon</groupId>
+        <artifactId>spring-boot-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>user-app</artifactId>
+
+    <properties>
+        <sonar.coverage.exclusions>**/UserApp.java</sonar.coverage.exclusions>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>klon</groupId>
+            <artifactId>user-service-rest-spring-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>klon</groupId>
+            <artifactId>user-service-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- retry for config client -->
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>user-inmem</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>klon</groupId>
+                    <artifactId>user-repo-inmem</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>user-redis</id>
+            <dependencies>
+                <dependency>
+                    <groupId>klon</groupId>
+                    <artifactId>user-repo-redis</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>
