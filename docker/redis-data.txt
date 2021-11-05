@@ -1,18 +1,18 @@
-HSET dummya-mono-service-default debug true
-HSET dummya-mono-service-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET dummya-mono-service-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
-HSET dummya-mono-service-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
+HSET dummya-mono-service-app-default debug true
+HSET dummya-mono-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
+HSET dummya-mono-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummya-mono-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
-HSET dummya-service-default debug true
-HSET dummya-service-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET dummya-service-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
-HSET dummya-service-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
-HSET dummya-service-default dummyb.serviceName dummyb-service
+HSET dummya-service-app-default debug true
+HSET dummya-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
+HSET dummya-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummya-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
+HSET dummya-service-app-default dummyb.serviceName dummyb-service-app
 
-HSET dummyb-service-default debug true
-HSET dummyb-service-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET dummyb-service-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
-HSET dummyb-service-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
+HSET dummyb-service-app-default debug true
+HSET dummyb-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
+HSET dummyb-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummyb-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
 
 

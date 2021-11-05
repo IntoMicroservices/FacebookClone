@@ -13,7 +13,7 @@ public class DummyBServiceDiscoveryRest implements DummyBService {
     @Override
     public String getB() {
         ResponseEntity<String> restExchange =
-                restTemplate.getForEntity("http://"+serviceName+":8080/getB",String.class);
+                restTemplate.getForEntity("http://"+serviceName+"/getB",String.class);
 
         return restExchange.getBody();
     }
