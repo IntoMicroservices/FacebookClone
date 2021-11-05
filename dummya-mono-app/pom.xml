@@ -12,6 +12,10 @@
 
     <artifactId>dummya-mono-app</artifactId>
 
+    <properties>
+        <sonar.coverage.exclusions>**/TheApp.java</sonar.coverage.exclusions>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
