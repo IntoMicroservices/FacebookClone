@@ -14,6 +14,10 @@ HSET dummyb-service-app-default eureka.instance.preferIpAddress true eureka.clie
 HSET dummyb-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
 HSET dummyb-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
+HSET user-service-app-default debug true
+HSET user-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
+HSET user-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET user-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
 
 HSET service-registry-default debug true

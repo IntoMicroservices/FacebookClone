@@ -8,22 +8,23 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>config-server</module>
-		<module>service-registry</module>
 		<module>spring-boot-parent</module>
 
-		<module>dummya-service-api</module>
-		<module>dummya-service-local-spring-boot-starter</module>
-		<module>dummya-rest-endpoint-spring-boot-starter</module>
-		<module>dummya-mono-app</module>
+		<module>config-server</module>
+		<module>service-registry</module>
+
 		<module>dummyb-service-api</module>
 		<module>dummyb-service-local-spring-boot-starter</module>
 		<module>dummyb-rest-endpoint-spring-boot-starter</module>
 		<module>dummyb-app</module>
 		<module>dummyb-service-discovery-rest-spring-boot-starter</module>
+
+		<module>dummya-service-api</module>
+		<module>dummya-service-local-spring-boot-starter</module>
+		<module>dummya-rest-endpoint-spring-boot-starter</module>
+		<module>dummya-mono-app</module>
 		<module>dummya-app</module>
-		<!--module>post-repo-api</module>
-		<module>post-repo-inmem</module>
+
 		<module>user-repo-api</module>
 		<module>user-repo-inmem</module>
 		<module>user-repo-redis</module>
@@ -31,10 +32,11 @@
 		<module>user-service-impl</module>
 		<module>user-service-spring-boot-starter</module>
 		<module>user-service-rest-spring-api</module>
-		<module>user-spring-boot-app</module-->
+		<module>user-app</module>
 
-
-    </modules>
+		<!--module>post-repo-api</module>
+		<module>post-repo-inmem</module-->
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
