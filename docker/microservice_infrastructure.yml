@@ -77,6 +77,29 @@ services:
       #      start_period: 10s
       retries: 10
 
+  api-gateway:
+    image: localhost:5000/api-gateway
+    container_name: api-gateway
+    restart: on-failure
+    depends_on:
+      - "service-registry"
+    ports:
+      - "10040:8080"
+    environment:
+      SPRING_APPLICATION_NAME: api-gateway
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8080
+      SPRING_MAIN_WEB-APPLICATION-TYPE: reactive
+    networks:
+      backend:
+        aliases:
+          - "api-gateway"
+    healthcheck:
+      test: "wget --no-cache --spider http://localhost:8080/actuator/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      #      start_period: 10s
+      retries: 10
+
 volumes:
   redis_data_volume:
   redisinsight_db_volume:

@@ -9,9 +9,9 @@ if [ "$1" == "up" ]; then
   docker-compose -f "$DOCKER_DIR"/microservices.yml pull -q && docker-compose -f "$DOCKER_DIR"/microservices.yml \
     -p microservices up -d
 
-launchBrowser http://localhost:9000/getAB dummya-mono-service &
-launchBrowser http://localhost:9010/getAB dummya-service &
-launchBrowser http://localhost:9020/getB dummyb-service &
+launchBrowser http://localhost:10040/a-mono/getAB dummya-mono-service &
+launchBrowser http://localhost:10040/a/getAB dummya-service &
+launchBrowser http://localhost:10040/b/getB dummyb-service &
 
 elif [ "$1" == "down" ]; then
     docker-compose -f "$DOCKER_DIR"/microservices.yml -p microservices down -v

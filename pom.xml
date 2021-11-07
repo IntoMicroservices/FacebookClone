@@ -12,6 +12,7 @@
 
 		<module>config-server</module>
 		<module>service-registry</module>
+		<module>api-gateway</module>
 
 		<module>dummyb-service-api</module>
 		<module>dummyb-service-local-spring-boot-starter</module>
