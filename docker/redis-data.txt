@@ -19,6 +19,11 @@ HSET user-service-app-default eureka.instance.preferIpAddress true eureka.client
 HSET user-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
 HSET user-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
+HSET api-gateway-default debug true
+HSET api-gateway-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
+HSET api-gateway-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET api-gateway-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
+
 
 HSET service-registry-default debug true
 HSET service-registry-default server.port 8080
