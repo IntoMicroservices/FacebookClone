@@ -1,28 +1,31 @@
 HSET dummya-mono-service-app-default debug true
 HSET dummya-mono-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET dummya-mono-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummya-mono-service-app-default eureka.client.fetchRegistry true
 HSET dummya-mono-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
 HSET dummya-service-app-default debug true
 HSET dummya-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET dummya-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummya-service-app-default eureka.client.fetchRegistry true
 HSET dummya-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 HSET dummya-service-app-default dummyb.serviceName dummyb-service-app
 
 HSET dummyb-service-app-default debug true
 HSET dummyb-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET dummyb-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET dummyb-service-app-default eureka.client.fetchRegistry true
 HSET dummyb-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
 HSET user-service-app-default debug true
 HSET user-service-app-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET user-service-app-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET user-service-app-default eureka.client.fetchRegistry true
 HSET user-service-app-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
 
 HSET api-gateway-default debug true
 HSET api-gateway-default eureka.instance.preferIpAddress true eureka.client.registerWithEureka true
-HSET api-gateway-default eureka.client.fetchRegistry true eureka.client.serviceUrl.defaultZone
+HSET api-gateway-default eureka.client.fetchRegistry true
 HSET api-gateway-default eureka.client.serviceUrl.defaultZone http://service-registry:8080/eureka/
+HSET api-gateway-default spring.cloud.gateway.discovery.locator.enabled true
+HSET api-gateway-default spring.cloud.gateway.discovery.locator.lowerCaseServiceId true
+HSET api-gateway-default management.endpoints.web.exposure.include health,gateway
 
 
 HSET service-registry-default debug true
