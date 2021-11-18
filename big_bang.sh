@@ -15,6 +15,4 @@ source "$SCRIPT_DIRS"/microservices.sh down
 source "$SCRIPT_DIRS"/microservice_infrastructure.sh down
 source "$SCRIPT_DIRS"/local-registry.sh down
 
-
-#remove our images from local docker cache
-#docker rmi $(docker images --filter=reference="localhost:5000/*" -q)
+source "$SCRIPT_DIRS"/remove_docker_images.sh

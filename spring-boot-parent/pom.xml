@@ -32,6 +32,21 @@
             </build>
         </profile>
         <profile>
+            <id>mac</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-resolver-dns-native-macos</artifactId>
+                    <version>4.1.70.Final</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
             <!-- for Apple M1 ... and other ARMs? -->
             <id>aarch64</id>
             <activation>
